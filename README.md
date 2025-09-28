@@ -4,7 +4,6 @@
 NoteTaker est une application Android moderne qui permet de créer, gérer et organiser vos notes personnelles. Avec son interface élégante aux tons anthracite et orange, l'application offre une expérience utilisateur fluide et agréable pour prendre et consulter vos notes au quotidien.
 
 ## Captures d'écran
-*Les captures d'écran seront ajoutées ici*
 ![img.png](img.png)
 ![img_1.png](img_1.png)
 ![img_2.png](img_2.png)
