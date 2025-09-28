@@ -5,7 +5,7 @@ import fr.eseo.ld.mm.notes.model.Note
 class NoteTakerRepositoryListImpl : NoteTakerRepository {
     private val notes = mutableListOf<Note>()
     override suspend fun getNotes(): List<Note> {
-        return notes.toList();
+        return notes.toList()
     }
 
     override suspend fun addOrUpdateNote(note: Note) {

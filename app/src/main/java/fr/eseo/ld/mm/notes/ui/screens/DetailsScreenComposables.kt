@@ -40,8 +40,8 @@ import java.time.temporal.ChronoUnit
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-public fun DetailsScreen(navController: NavController,noteId : String,
-                         viewModel : NoteTakerViewModel
+fun DetailsScreen(navController: NavController, noteId : String,
+                  viewModel : NoteTakerViewModel
 )
 {
     val note by viewModel.note.collectAsState()
@@ -53,7 +53,7 @@ public fun DetailsScreen(navController: NavController,noteId : String,
 
     LaunchedEffect(noteId, note) {
         if(noteId == "NEW") {
-            id = null;
+            id = null
             title = ""
             body = ""
             author = "Bob"
@@ -203,7 +203,7 @@ private fun DetailsScreenNoteCard(title: String,
                 .fillMaxWidth()
         ) {
             Text(text = stringResource(R.string.creation_date))
-            Text(text = displayDate(creationDate as LocalDateTime, true))
+            Text(text = displayDate(creationDate, true))
         }
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -211,7 +211,7 @@ private fun DetailsScreenNoteCard(title: String,
                 .fillMaxWidth()
         ) {
             Text(text = stringResource(R.string.modification_date))
-            Text(text = displayDate(modificationDate as LocalDateTime, true))
+            Text(text = displayDate(modificationDate, true))
         }
 
     }
@@ -220,7 +220,7 @@ private fun DetailsScreenNoteCard(title: String,
 
 private fun displayDate(date : LocalDateTime, since : Boolean) : String {
     val formatter = DateTimeFormatter.ofPattern("dd/MM/yy hh:mm")
-    var display = formatter.format(date);
+    var display = formatter.format(date)
     if(since){
         val daysAgo = ChronoUnit.DAYS.between(date.toLocalDate(), LocalDate.now())
         display = display.plus(" (${daysAgo} days ago)")

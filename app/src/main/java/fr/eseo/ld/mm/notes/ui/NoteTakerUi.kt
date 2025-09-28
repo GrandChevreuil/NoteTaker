@@ -2,23 +2,19 @@ package fr.eseo.ld.mm.notes.ui
 
 import fr.eseo.ld.mm.notes.ui.screens.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import fr.eseo.ld.mm.notes.model.Note
 import fr.eseo.ld.mm.notes.repositories.NoteTakerRepositoryListImpl
 import fr.eseo.ld.mm.notes.ui.navigation.NoteTakerScreens
-import fr.eseo.ld.mm.notes.ui.screens.addNotes
 import fr.eseo.ld.mm.notes.ui.viewmodels.NoteTakerViewModel
 import fr.eseo.ld.mm.notes.ui.viewmodels.NoteTakerViewModelFactory
-import java.time.LocalDateTime
 
 @Composable
-public fun NoteTakerUi() {
+fun NoteTakerUi() {
     val navController = rememberNavController()
     val viewModel : NoteTakerViewModel = viewModel(
         factory = NoteTakerViewModelFactory(
@@ -50,27 +46,4 @@ public fun NoteTakerUi() {
         }
 
     }
-}
-
-
-
-
-
-fun addNotes(notes: MutableList<Note>) {
-    notes.add(Note(
-        id = "1",
-        author = "Tarek",
-        title = "Fight Club Review",
-        body = "Fight Club is an absolute masterpiece that keeps you on the edge of your seat from start to finis are explored in such a raw, thought-provoking way. The gritty aesthetic and David Fincher's direction make this a must-watch for any film enthusiast.",
-        creationDate = LocalDateTime.now(),
-        modificationDate = LocalDateTime.now()
-    ))
-    notes.add(Note(
-        id = "2",
-        author = "Tarek",
-        title = "Inception Thoughts",
-        body = "Inception is a mind-bending dream  level offering unique visuals and stakes. Leonardo DiCaprio's performance as Cobb is gripping, and the supporting cast, including Joseph Gordon-Levitt and Marion Cotillttable. Christopher Nolan outdid himself with this one!",
-        creationDate = LocalDateTime.now().minusDays(1),
-        modificationDate = LocalDateTime.now()
-    ))
 }
