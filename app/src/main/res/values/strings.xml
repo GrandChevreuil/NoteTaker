@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Note Taker</string>
+    <string name="add_note">new</string>
+    <string name="title_label">title to be changed</string>
+    <string name="body_label">body to be changed</string>
+    <string name="created_by">author please</string>
+    <string name="creation_date">created the ahhhhh</string>
+    <string name="modification_date">i dont know ;(</string>
+    <string name="back">Retour</string>
+    <string name="save_note">Enregistrer</string>
+    <string name="delete_note">delete_note</string>
+    <string name="delete_confirm">delete_confirm</string>
+    <string name="confirm_delete">confirm_delete</string>
+    <string name="dismiss_delete">dismiss_delete</string>
+</resources>
