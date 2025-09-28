@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import fr.eseo.ld.mm.notes.R
+import fr.eseo.ld.mm.notes.ui.theme.Anthracite
+import fr.eseo.ld.mm.notes.ui.theme.White
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -114,7 +116,8 @@ fun DetailsScreen(navController: NavController, noteId : String,
                         ) {
                             Icon(
                                 imageVector = Icons.Filled.Done,
-                                contentDescription = stringResource(R.string.save_note)
+                                contentDescription = stringResource(R.string.save_note),
+                                tint = Anthracite // L'icône de validation en anthracite
                             )
                         }
                     }
@@ -155,16 +158,24 @@ private fun DetailsScreenNoteCard(title: String,
         modifier = modifier
             .fillMaxSize(),
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = Anthracite, // Fond anthracite pour la carte
+            contentColor = White // Texte en blanc
+        )
     )
     {
         TextField(
             value = title,
             singleLine = true,
-            textStyle = MaterialTheme.typography.titleLarge,
+            textStyle = MaterialTheme.typography.titleLarge.copy(
+                color = White,
+                fontSize = MaterialTheme.typography.titleLarge.fontSize * 1.2f
+            ),
             onValueChange = onTitleChange,
             label = {
                 Text(
-                    text = stringResource(R.string.title_label)
+                    text = stringResource(R.string.title_label),
+                    color = White
                 )
             },
             modifier = Modifier
@@ -176,10 +187,14 @@ private fun DetailsScreenNoteCard(title: String,
 
         TextField(
             value = body,
-            textStyle = MaterialTheme.typography.bodyMedium,
+            textStyle = MaterialTheme.typography.bodyLarge.copy(
+                color = White,
+                fontSize = MaterialTheme.typography.bodyLarge.fontSize * 1.2f
+            ),
             onValueChange = onBodyChange,
             label = {Text(
-                text = stringResource(R.string.body_label)
+                text = stringResource(R.string.body_label),
+                color = White
             )},
             modifier = Modifier
                 .fillMaxWidth()
@@ -193,25 +208,46 @@ private fun DetailsScreenNoteCard(title: String,
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(8.dp)
         ) {
-            Text(text = stringResource(R.string.created_by))
-            Text(text = author)
+            Text(
+                text = stringResource(R.string.created_by),
+                color = White
+            )
+            Text(
+                text = author,
+                color = White
+            )
         }
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(8.dp)
         ) {
-            Text(text = stringResource(R.string.creation_date))
-            Text(text = displayDate(creationDate, true))
+            Text(
+                text = stringResource(R.string.creation_date),
+                color = White
+            )
+            Text(
+                text = displayDate(creationDate, true),
+                color = White
+            )
         }
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(8.dp)
         ) {
-            Text(text = stringResource(R.string.modification_date))
-            Text(text = displayDate(modificationDate, true))
+            Text(
+                text = stringResource(R.string.modification_date),
+                color = White
+            )
+            Text(
+                text = displayDate(modificationDate, true),
+                color = White
+            )
         }
 
     }

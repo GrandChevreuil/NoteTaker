@@ -45,6 +45,7 @@ import androidx.navigation.NavController
 import fr.eseo.ld.mm.notes.model.Note
 import fr.eseo.ld.mm.notes.ui.navigation.NoteTakerScreens
 import fr.eseo.ld.mm.notes.ui.theme.NoteTakerTheme
+import fr.eseo.ld.mm.notes.ui.theme.PoppinsFont
 import fr.eseo.ld.mm.notes.ui.viewmodels.NoteTakerViewModel
 import java.time.LocalDateTime
 
@@ -123,7 +124,10 @@ fun SummaryScreen(viewModel: NoteTakerViewModel,
                 TopAppBar (
                     title = {
                         Text(
-                            text = stringResource(R.string.app_name)
+                            text = stringResource(R.string.app_name),
+                            color = MaterialTheme.colorScheme.primary, // Orange foncé
+                            fontFamily = PoppinsFont,
+                            fontWeight = FontWeight.Bold
                         )
                     }
                 )
@@ -132,7 +136,9 @@ fun SummaryScreen(viewModel: NoteTakerViewModel,
                 FloatingActionButton(
                     onClick = {
                         navController.navigate(NoteTakerScreens.DETAILS_SCREEN.name+"/NEW")
-                    }
+                    },
+                    containerColor = MaterialTheme.colorScheme.primary, // Orange foncé
+                    contentColor = MaterialTheme.colorScheme.onPrimary // Blanc
                 ) {
                     Icon(
                         imageVector = Icons.Default.Add,
@@ -165,15 +171,17 @@ private fun SummaryScreenNoteCard(note: Note,
                                   onLongClick : (String) -> Unit,
                                   modifier: Modifier,) {
     Card(
-
         modifier = Modifier
             .combinedClickable(
                 onClick = {onClick(note.id)},
                 onLongClick = {onLongClick(note.id)}
             )
-            .padding(4.dp)
-,
-                elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+            .padding(4.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.surface, // Gris clair
+            contentColor = MaterialTheme.colorScheme.onSurface // Anthracite sur gris clair
+        )
     ) {
         Column (modifier = Modifier.padding(8.dp)) {
             Text(
