@@ -6,6 +6,8 @@ NoteTaker est une application Android moderne qui permet de créer, gérer et or
 ## Captures d'écran
 *Les captures d'écran seront ajoutées ici*
 ![img.png](img.png)
+![img_1.png](img_1.png)
+![img_2.png](img_2.png)
 
 ## Fonctionnalités
 - Création et édition de notes avec titre et contenu
@@ -52,6 +54,27 @@ git clone https://github.com/GrandChevreuil/NoteTaker.git
 - Appuyez sur une note existante pour l'éditer
 - Appuyez longuement sur une note pour la supprimer
 - Utilisez l'icône de validation pour enregistrer vos modifications
+
+## Notes de publication - Version 1.0.0
+
+### Ce que l'application peut faire
+- Créer de nouvelles notes avec titre et contenu
+- Afficher une liste de notes dans une interface visuellement attrayante
+- Éditer des notes existantes et mettre à jour leur contenu
+- Supprimer des notes indésirables via un appui long
+- Afficher les dates de création et de modification des notes
+- Offrir une expérience utilisateur fluide avec une interface moderne et élégante
+- Présenter un design harmonieux avec des couleurs anthracite, gris clair et orange foncé
+
+### Limitations actuelles
+- L'application stocke les notes en mémoire uniquement pendant son exécution
+- Les notes ne sont pas sauvegardées de façon permanente dans une base de données
+- Pas de fonctionnalité de recherche parmi les notes
+- Pas de possibilité de catégoriser les notes ou d'ajouter des étiquettes
+- Pas de synchronisation entre différents appareils
+- Pas d'options de partage des notes vers d'autres applications
+- Pas de support pour les contenus riches (images, listes, formatage du texte)
+- Pas de système de notifications ou de rappels
 
 ## Contribuer
 Les contributions sont les bienvenues! Si vous souhaitez contribuer à ce projet:
