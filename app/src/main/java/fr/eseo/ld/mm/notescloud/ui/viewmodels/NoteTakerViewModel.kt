@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import fr.eseo.ld.mm.notescloud.model.Note
-import fr.eseo.ld.mm.notescloud.repositories.NoteTakerRepositoryFirestoreImpl
+import fr.eseo.ld.mm.notescloud.repositories.NoteTakerRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class NoteTakerViewModel @Inject constructor(
-    private val repository: NoteTakerRepositoryFirestoreImpl
+    private val repository: NoteTakerRepository
 ) : ViewModel() {
     private val _notes = MutableStateFlow<List<Note>>(emptyList())
     val notes : StateFlow<List<Note>> = _notes.asStateFlow()

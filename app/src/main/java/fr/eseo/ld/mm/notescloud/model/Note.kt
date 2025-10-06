@@ -6,6 +6,7 @@ import com.google.firebase.Timestamp
 import com.google.firebase.firestore.Exclude
 import java.time.LocalDateTime
 import java.time.ZoneId
+import java.util.Date
 
 @Entity(tableName = "notes")
 data class Note(
@@ -37,8 +38,8 @@ data class Note(
                 title = title,
                 body = body,
                 author = author,
-                creationDate = Timestamp(creationDate.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli() / 1000, 0),
-                modificationDate = Timestamp(modificationDate.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli() / 1000, 0)
+                creationDate = Timestamp(Date.from(creationDate.atZone(ZoneId.systemDefault()).toInstant())),
+                modificationDate = Timestamp(Date.from(modificationDate.atZone(ZoneId.systemDefault()).toInstant()))
             )
         }
     }

@@ -108,12 +108,14 @@ fun DetailsScreen(
                         IconButton(
                             onClick = {
                                 val now = LocalDateTime.now()
+                                val existingNote = note
+                                val noteId = id ?: createId(now)
                                 val newNote = Note.create(
-                                    id = id ?: "",
+                                    id = noteId,
                                     title = title,
                                     body = body,
                                     author = authenticationViewModel.user.value?.email ?: author,
-                                    creationDate = if (note != null) note.creationDateLocal else now,
+                                    creationDate = existingNote?.creationDateLocal ?: now,
                                     modificationDate = now
                                 )
                                 viewModel.addOrUpdateNote(newNote)

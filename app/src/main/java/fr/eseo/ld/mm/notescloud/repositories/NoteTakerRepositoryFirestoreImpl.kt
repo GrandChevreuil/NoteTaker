@@ -14,7 +14,12 @@ class NoteTakerRepositoryFirestoreImpl @Inject constructor(
     private val notesCollection: CollectionReference = fireStore.collection("notes")
 
     override suspend fun addOrUpdateNote(note: Note) {
-        notesCollection.document(note.id).set(note).await()
+        if (note.id.isBlank()) {
+            val document = notesCollection.document()
+            document.set(note.copy(id = document.id)).await()
+        } else {
+            notesCollection.document(note.id).set(note).await()
+        }
     }
 
     override suspend fun deleteNote(note: Note) {

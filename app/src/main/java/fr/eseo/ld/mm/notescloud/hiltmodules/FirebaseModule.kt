@@ -6,6 +6,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import fr.eseo.ld.mm.notescloud.repositories.NoteTakerRepository
+import fr.eseo.ld.mm.notescloud.repositories.NoteTakerRepositoryFirestoreImpl
 import javax.inject.Singleton
 
 @Module
@@ -18,4 +20,10 @@ object FirebaseModule {
     @Provides
     @Singleton
     fun provideFirebaseFirestore(): FirebaseFirestore = FirebaseFirestore.getInstance()
+
+    @Provides
+    @Singleton
+    fun provideNoteTakerRepository(
+        repository: NoteTakerRepositoryFirestoreImpl
+    ): NoteTakerRepository = repository
 }

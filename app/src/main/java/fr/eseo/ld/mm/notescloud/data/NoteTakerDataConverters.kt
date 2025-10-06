@@ -1,24 +1,19 @@
 package fr.eseo.ld.mm.notescloud.data
 
 import androidx.room.TypeConverter
-import java.time.Instant
-import java.time.LocalDateTime
-import java.time.ZoneId
+import com.google.firebase.Timestamp
+import java.util.Date
 
 class NoteTakerDataConverters {
     @TypeConverter
-    fun fromTimeStamp(value: Long?): LocalDateTime? {
-        return value?.let {
-            Instant.ofEpochSecond(it)
-                .atZone(ZoneId.systemDefault())
-                .toLocalDateTime()
-        }
+    fun fromTimestamp(value: Timestamp?): Long? {
+        return value?.toDate()?.time
     }
 
     @TypeConverter
-    fun toTimeStamp(value: LocalDateTime?): Long? {
-        return value?.let {
-            it.atZone(ZoneId.systemDefault()).toEpochSecond()
+    fun toTimestamp(value: Long?): Timestamp? {
+        return value?.let { millis ->
+            Timestamp(Date(millis))
         }
     }
 }
