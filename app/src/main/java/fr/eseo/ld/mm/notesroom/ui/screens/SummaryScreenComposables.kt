@@ -1,7 +1,7 @@
-package fr.eseo.ld.mm.notes.ui.screens
+package fr.eseo.ld.mm.notesroom.ui.screens
 
 import androidx.compose.foundation.combinedClickable
-import fr.eseo.ld.mm.notes.R
+import fr.eseo.ld.mm.notesroom.R
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -42,11 +42,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import fr.eseo.ld.mm.notes.model.Note
-import fr.eseo.ld.mm.notes.ui.navigation.NoteTakerScreens
-import fr.eseo.ld.mm.notes.ui.theme.NoteTakerTheme
-import fr.eseo.ld.mm.notes.ui.theme.PoppinsFont
-import fr.eseo.ld.mm.notes.ui.viewmodels.NoteTakerViewModel
+import fr.eseo.ld.mm.notesroom.model.Note
+import fr.eseo.ld.mm.notesroom.ui.navigation.NoteTakerScreens
+import fr.eseo.ld.mm.notesroom.ui.theme.NoteTakerTheme
+import fr.eseo.ld.mm.notesroom.ui.theme.PoppinsFont
+import fr.eseo.ld.mm.notesroom.ui.viewmodels.NoteTakerViewModel
 import java.time.LocalDateTime
 
 

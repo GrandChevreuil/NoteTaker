@@ -1,12 +1,11 @@
-package fr.eseo.ld.mm.notes.ui.screens
+package fr.eseo.ld.mm.notesroom.ui.screens
 
 import androidx.compose.runtime.*
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import fr.eseo.ld.mm.notes.R
-import fr.eseo.ld.mm.notes.ui.theme.Anthracite
-import fr.eseo.ld.mm.notes.ui.theme.White
+import fr.eseo.ld.mm.notesroom.ui.theme.Anthracite
+import fr.eseo.ld.mm.notesroom.ui.theme.White
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -33,12 +32,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import fr.eseo.ld.mm.notes.model.Note
-import fr.eseo.ld.mm.notes.ui.viewmodels.NoteTakerViewModel
+import fr.eseo.ld.mm.notesroom.model.Note
+import fr.eseo.ld.mm.notesroom.ui.viewmodels.NoteTakerViewModel
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
+import fr.eseo.ld.mm.notesroom.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

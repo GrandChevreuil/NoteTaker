@@ -1,4 +1,4 @@
-package fr.eseo.ld.mm.notes
+package fr.eseo.ld.mm.notesroom
 
 import org.junit.Test
 

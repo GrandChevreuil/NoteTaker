@@ -1,6 +1,6 @@
-package fr.eseo.ld.mm.notes.repositories
+package fr.eseo.ld.mm.notesroom.repositories
 
-import fr.eseo.ld.mm.notes.model.Note
+import fr.eseo.ld.mm.notesroom.model.Note
 
 class NoteTakerRepositoryListImpl : NoteTakerRepository {
     private val notes = mutableListOf<Note>()

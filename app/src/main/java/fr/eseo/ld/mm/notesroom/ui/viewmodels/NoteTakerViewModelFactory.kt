@@ -1,8 +1,8 @@
-package fr.eseo.ld.mm.notes.ui.viewmodels
+package fr.eseo.ld.mm.notesroom.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import fr.eseo.ld.mm.notes.repositories.NoteTakerRepository
+import fr.eseo.ld.mm.notesroom.repositories.NoteTakerRepository
 
 class NoteTakerViewModelFactory (
     private val repository : NoteTakerRepository

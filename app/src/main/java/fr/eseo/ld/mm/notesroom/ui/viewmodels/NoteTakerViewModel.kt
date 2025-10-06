@@ -1,9 +1,9 @@
-package fr.eseo.ld.mm.notes.ui.viewmodels
+package fr.eseo.ld.mm.notesroom.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import fr.eseo.ld.mm.notes.model.Note
-import fr.eseo.ld.mm.notes.repositories.NoteTakerRepository
+import fr.eseo.ld.mm.notesroom.model.Note
+import fr.eseo.ld.mm.notesroom.repositories.NoteTakerRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

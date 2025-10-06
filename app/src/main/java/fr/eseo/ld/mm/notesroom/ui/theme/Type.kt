@@ -1,4 +1,4 @@
-package fr.eseo.ld.mm.notes.ui.theme
+package fr.eseo.ld.mm.notesroom.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
@@ -6,7 +6,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
-import fr.eseo.ld.mm.notes.R
+import fr.eseo.ld.mm.notesroom.R
 
 val PoppinsFont = FontFamily(
     Font(R.font.poppins_regular, FontWeight.Normal),
