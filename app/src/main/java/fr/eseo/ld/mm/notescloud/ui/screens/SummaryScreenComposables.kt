@@ -55,15 +55,12 @@ import java.time.LocalDateTime
     showBackground = true,
     showSystemUi = true
 )
-
-
-
-
 @Composable
-fun NotesComposePreview(){
+fun NotesComposePreview() {
     val notes = remember { mutableListOf<Note>().apply { addNotes(this) } }
     NoteTakerTheme {
-     //   SummaryScreen(notes)
+        // Prévisualisation simplifiée sans ViewModel ni navigation réelle
+        // SummaryScreen(viewModel, navController, authenticationViewModel)
     }
 }
 
@@ -93,10 +90,16 @@ fun SummaryScreen(
     navController: NavController,
     authenticationViewModel: AuthenticationViewModel,
     modifier: Modifier = Modifier
-){
+) {
     val notes by viewModel.notes.collectAsState()
+    val user by authenticationViewModel.user.collectAsState()
+    var userConnected by remember { mutableStateOf(false) }
 
-    var noteToDelete by remember{mutableStateOf<Note?>(null)}
+    LaunchedEffect(user) {
+        userConnected = user?.isAnonymous?.not() ?: false
+    }
+
+    var noteToDelete by remember { mutableStateOf<Note?>(null) }
 
     LaunchedEffect(Unit) {
         viewModel.refreshNotes()
@@ -115,7 +118,6 @@ fun SummaryScreen(
         )
     }
 
-
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -124,24 +126,41 @@ fun SummaryScreen(
     ) {
         Scaffold(
             topBar = {
-                TopAppBar (
+                TopAppBar(
                     title = {
                         Text(
                             text = stringResource(R.string.app_name),
-                            color = MaterialTheme.colorScheme.primary, // Orange foncé
+                            color = MaterialTheme.colorScheme.primary,
                             fontFamily = PoppinsFont,
                             fontWeight = FontWeight.Bold
                         )
+                    },
+                    actions = {
+                        if (userConnected) {
+                            Button(
+                                onClick = { authenticationViewModel.logout() }
+                            ) {
+                                Text(text = "Log out")
+                            }
+                        } else {
+                            Button(
+                                onClick = {
+                                    navController.navigate(NoteTakerScreens.CONNECTION_SCREEN.name)
+                                }
+                            ) {
+                                Text(text = "Connect")
+                            }
+                        }
                     }
                 )
             },
             floatingActionButton = {
                 FloatingActionButton(
                     onClick = {
-                        navController.navigate(NoteTakerScreens.DETAILS_SCREEN.name+"/NEW")
+                        navController.navigate(NoteTakerScreens.DETAILS_SCREEN.name + "/NEW")
                     },
-                    containerColor = MaterialTheme.colorScheme.primary, // Orange foncé
-                    contentColor = MaterialTheme.colorScheme.onPrimary // Blanc
+                    containerColor = MaterialTheme.colorScheme.primary,
+                    contentColor = MaterialTheme.colorScheme.onPrimary
                 ) {
                     Icon(
                         imageVector = Icons.Filled.Add,

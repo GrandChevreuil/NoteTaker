@@ -20,6 +20,7 @@ import fr.eseo.ld.mm.notescloud.viewmodels.AuthenticationViewModel
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 
 @Composable
 fun NoteTakerUi() {

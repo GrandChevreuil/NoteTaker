@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import fr.eseo.ld.mm.notescloud.ui.theme.Anthracite
+import fr.eseo.ld.mm.notescloud.ui.theme.LightGrey
 import fr.eseo.ld.mm.notescloud.ui.theme.White
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -24,6 +25,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -34,39 +36,44 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import fr.eseo.ld.mm.notescloud.model.Note
 import fr.eseo.ld.mm.notescloud.ui.viewmodels.NoteTakerViewModel
+import fr.eseo.ld.mm.notescloud.viewmodels.AuthenticationViewModel
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.time.temporal.ChronoUnit
+import fr.eseo.ld.mm.notescloud.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DetailsScreen(navController: NavController, noteId : String,
-                  viewModel : NoteTakerViewModel
-)
-{
+fun DetailsScreen(
+    navController: NavController,
+    noteId: String,
+    viewModel: NoteTakerViewModel,
+    authenticationViewModel: AuthenticationViewModel
+) {
     val note by viewModel.note.collectAsState()
     var title by remember { mutableStateOf(note?.title ?: "") }
-    var body by remember {mutableStateOf(note?.body ?: "")}
-    var author by remember {mutableStateOf(note?.author ?: "")}
-    var id by remember {mutableStateOf(note?.id)}
+    var body by remember { mutableStateOf(note?.body ?: "") }
+    var author by remember { mutableStateOf(note?.author ?: "") }
+    var id by remember { mutableStateOf(note?.id) }
     val date = LocalDateTime.now()
+    var editable by remember { mutableStateOf(true) }
 
     LaunchedEffect(noteId, note) {
-        if(noteId == "NEW") {
+        if (noteId == "NEW") {
             id = null
             title = ""
             body = ""
-            author = "Bob"
-        }
-        else {
+            author = authenticationViewModel.user.value?.email ?: "??"
+            editable = true
+        } else {
             viewModel.getNoteById(noteId)
-            note?.let {
-                    note ->
+            note?.let { note ->
                 id = note.id
                 title = note.title
                 body = note.body
                 author = note.author
+                editable = note.author == authenticationViewModel.user.value?.email
             }
         }
     }
@@ -78,7 +85,7 @@ fun DetailsScreen(navController: NavController, noteId : String,
         color = MaterialTheme.colorScheme.background
     ) {
         Scaffold(
-            topBar ={
+            topBar = {
                 TopAppBar(
                     title = {
                         Text(
@@ -103,66 +110,81 @@ fun DetailsScreen(navController: NavController, noteId : String,
                                 val newNote = Note(
                                     creationDate = note?.creationDate ?: date,
                                     modificationDate = date,
-                                    author = author,
-                                    body =body,
+                                    author = authenticationViewModel.user.value?.email ?: author,
+                                    body = body,
                                     title = title,
                                     id = note?.id ?: createId(date)
                                 )
                                 viewModel.addOrUpdateNote(newNote)
                                 navController.navigateUp()
-
-                            }
+                            },
+                            enabled = editable
                         ) {
                             Icon(
                                 imageVector = Icons.Filled.Done,
                                 contentDescription = stringResource(R.string.save_note),
-                                tint = Anthracite // L'icône de validation en anthracite
+                                tint = Anthracite
                             )
                         }
                     }
                 )
             },
-            content = {
-
-                    innerPadding ->
+            content = { innerPadding ->
                 DetailsScreenNoteCard(
                     title = title,
                     body = body,
                     author = author,
-                    creationDate =  note?.creationDate ?: date ,
-                    modificationDate = note?.modificationDate ?: date ,
-                    onBodyChange = {body = it},
-                    onTitleChange = {title = it},
-                    modifier = Modifier.padding(innerPadding)
+                    creationDate = note?.creationDate ?: date,
+                    modificationDate = note?.modificationDate ?: date,
+                    onBodyChange = { body = it },
+                    onTitleChange = { title = it },
+                    modifier = Modifier.padding(innerPadding),
+                    editable = editable
                 )
             }
         )
     }
 }
 
-
-
 @Composable
-private fun DetailsScreenNoteCard(title: String,
-                                  body: String,
-                                  author: String,
-                                  creationDate: LocalDateTime,
-                                  modificationDate: LocalDateTime,
-                                  modifier: Modifier = Modifier,
-                                  onTitleChange: (String) -> Unit,
-                                  onBodyChange: (String) -> Unit
-){
+private fun DetailsScreenNoteCard(
+    title: String,
+    body: String,
+    author: String,
+    creationDate: LocalDateTime,
+    modificationDate: LocalDateTime,
+    modifier: Modifier = Modifier,
+    onTitleChange: (String) -> Unit,
+    onBodyChange: (String) -> Unit,
+    editable: Boolean
+) {
 
     Card(
         modifier = modifier
             .fillMaxSize(),
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         colors = CardDefaults.cardColors(
-            containerColor = Anthracite, // Fond anthracite pour la carte
-            contentColor = White // Texte en blanc
+            containerColor = Anthracite,
+            contentColor = White
         )
-    )
-    {
+    ) {
+        val textFieldColors = TextFieldDefaults.colors(
+            focusedContainerColor = Anthracite,
+            unfocusedContainerColor = Anthracite,
+            disabledContainerColor = Anthracite,
+            focusedTextColor = White,
+            unfocusedTextColor = White,
+            disabledTextColor = LightGrey,
+            cursorColor = White,
+            focusedLabelColor = LightGrey,
+            unfocusedLabelColor = LightGrey,
+            disabledLabelColor = LightGrey,
+            focusedIndicatorColor = LightGrey,
+            unfocusedIndicatorColor = LightGrey,
+            disabledIndicatorColor = LightGrey,
+            focusedSupportingTextColor = LightGrey,
+            unfocusedSupportingTextColor = LightGrey
+        )
         TextField(
             value = title,
             singleLine = true,
@@ -178,12 +200,13 @@ private fun DetailsScreenNoteCard(title: String,
                 )
             },
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(),
+            readOnly = !editable,
+            colors = textFieldColors
         )
         Spacer(
             modifier = Modifier.height(8.dp)
         )
-
         TextField(
             value = body,
             textStyle = MaterialTheme.typography.bodyLarge.copy(
@@ -191,13 +214,17 @@ private fun DetailsScreenNoteCard(title: String,
                 fontSize = MaterialTheme.typography.bodyLarge.fontSize * 1.2f
             ),
             onValueChange = onBodyChange,
-            label = {Text(
-                text = stringResource(R.string.body_label),
-                color = White
-            )},
+            label = {
+                Text(
+                    text = stringResource(R.string.body_label),
+                    color = White
+                )
+            },
             modifier = Modifier
                 .fillMaxWidth()
-                .weight(1f)
+                .weight(1f),
+            readOnly = !editable,
+            colors = textFieldColors
         )
         Spacer(
             modifier = Modifier.height(8.dp)
