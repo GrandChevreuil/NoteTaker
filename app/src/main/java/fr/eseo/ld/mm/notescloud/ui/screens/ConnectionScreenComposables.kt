@@ -84,8 +84,10 @@ fun ConnectionScreen(
             Spacer(modifier = Modifier.height(16.dp))
             Button(
                 onClick = {
-                    authenticationViewModel.login(email, password)
-                    navController.popBackStack()
+                    if (email.isNotBlank() && password.isNotBlank()) {
+                        authenticationViewModel.login(email, password)
+                        navController.popBackStack()
+                    }
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
@@ -94,8 +96,10 @@ fun ConnectionScreen(
             Spacer(modifier = Modifier.height(8.dp))
             Button(
                 onClick = {
-                    authenticationViewModel.signUp(email, password)
-                    navController.popBackStack()
+                    if (email.isNotBlank() && password.isNotBlank()) {
+                        authenticationViewModel.signUp(email, password)
+                        navController.popBackStack()
+                    }
                 },
                 modifier = Modifier.fillMaxWidth()
             ) {
