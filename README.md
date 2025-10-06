@@ -5,7 +5,7 @@ NoteTaker est une application Android moderne qui permet de créer, gérer et or
 
 ## Captures d'écran
 ![Écran de connexion](img_1.png)
-![Liste des notes](img.png)
+![Liste des notes](img_2.png)
 
 ## Fonctionnalités
 - Authentification email/mot de passe ou connexion anonyme via Firebase Authentication
