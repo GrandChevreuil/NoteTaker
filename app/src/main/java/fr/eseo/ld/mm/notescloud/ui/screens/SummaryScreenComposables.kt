@@ -47,6 +47,7 @@ import fr.eseo.ld.mm.notescloud.ui.navigation.NoteTakerScreens
 import fr.eseo.ld.mm.notescloud.ui.theme.NoteTakerTheme
 import fr.eseo.ld.mm.notescloud.ui.theme.PoppinsFont
 import fr.eseo.ld.mm.notescloud.ui.viewmodels.NoteTakerViewModel
+import fr.eseo.ld.mm.notescloud.viewmodels.AuthenticationViewModel
 import java.time.LocalDateTime
 
 
@@ -87,9 +88,11 @@ fun addNotes(notes: MutableList<Note>) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SummaryScreen(viewModel: NoteTakerViewModel,
-                  navController: NavController,
-                  modifier: Modifier= Modifier
+fun SummaryScreen(
+    viewModel: NoteTakerViewModel,
+    navController: NavController,
+    authenticationViewModel: AuthenticationViewModel,
+    modifier: Modifier = Modifier
 ){
     val notes by viewModel.notes.collectAsState()
 
@@ -141,7 +144,7 @@ fun SummaryScreen(viewModel: NoteTakerViewModel,
                     contentColor = MaterialTheme.colorScheme.onPrimary // Blanc
                 ) {
                     Icon(
-                        imageVector = Icons.Default.Add,
+                        imageVector = Icons.Filled.Add,
                         contentDescription = stringResource(R.string.add_note)
                     )
                 }
