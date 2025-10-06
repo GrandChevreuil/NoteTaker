@@ -4,8 +4,8 @@
 NoteTaker est une application Android moderne qui permet de créer, gérer et organiser vos notes personnelles tout en les synchronisant avec Firebase. Avec son interface élégante aux tons anthracite et orange, l'application offre une expérience fluide pour prendre, consulter et sécuriser vos notes au quotidien.
 
 ## Captures d'écran
-![Écran de connexion](img_2.png)
-![Liste des notes](img_1.png)
+![Écran de connexion](img_1.png)
+![Liste des notes](img.png)
 
 ## Fonctionnalités
 - Authentification email/mot de passe ou connexion anonyme via Firebase Authentication
