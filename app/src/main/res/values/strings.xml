@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Note Taker</string>
+    <string name="app_name">Note Taker v2</string>
     <string name="add_note">new note ?</string>
     <string name="title_label">title</string>
     <string name="body_label">you need to start writing</string>
