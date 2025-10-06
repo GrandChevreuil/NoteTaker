@@ -1,19 +1,19 @@
 # NoteTaker
 
 ## Description
-NoteTaker est une application Android moderne qui permet de créer, gérer et organiser vos notes personnelles. Avec son interface élégante aux tons anthracite et orange, l'application offre une expérience utilisateur fluide et agréable pour prendre et consulter vos notes au quotidien.
+NoteTaker est une application Android moderne qui permet de créer, gérer et organiser vos notes personnelles tout en les synchronisant avec Firebase. Avec son interface élégante aux tons anthracite et orange, l'application offre une expérience fluide pour prendre, consulter et sécuriser vos notes au quotidien.
 
 ## Captures d'écran
-![img.png](img.png)
-![img_1.png](img_1.png)
-![img_2.png](img_2.png)
+![Écran de connexion](img_2.png)
+![Liste des notes](img_1.png)
 
 ## Fonctionnalités
-- Création et édition de notes avec titre et contenu
-- Vue d'ensemble des notes sous forme de grille
-- Suppression de notes via un appui long
-- Interface utilisateur moderne avec thème sombre
-- Suivi des dates de création et de modification
+- Authentification email/mot de passe ou connexion anonyme via Firebase Authentication
+- Création et édition de notes avec gestion automatique des métadonnées (dates, auteur)
+- Synchronisation temps réel des notes dans Firebase Firestore
+- Affichage réactif de la liste des notes avec Jetpack Compose
+- Suppression rapide d'une note existante
+- Interface utilisateur moderne avec thème sombre et accents orange
 - Police Poppins pour une meilleure lisibilité
 
 ## Design
@@ -25,55 +25,50 @@ L'application utilise un design moderne avec:
 - Police Poppins pour l'ensemble de l'application
 
 ## Technologies utilisées
-- Kotlin
-- Jetpack Compose pour l'interface utilisateur
+- Kotlin & Coroutines
+- Jetpack Compose (Material Design 3)
 - Architecture MVVM (Model-View-ViewModel)
-- Material Design 3
-- Coroutines pour les opérations asynchrones
+- Firebase Authentication & Firebase Firestore
+- Hilt pour l'injection de dépendances
 
 ## Configuration requise
-- Android 5.0 (Lollipop, API 21) ou supérieur
-- Gradle 7.0 ou supérieur
-- Android Studio Arctic Fox ou supérieur
+- Android 7.0 (Nougat, API 24) ou supérieur
+- Android Studio Koala Feature Drop ou supérieur
+- Compte Firebase (projet configuré avec Authentication & Firestore)
 
 ## Installation
-1. Clonez ce dépôt:
-```
-git clone https://github.com/GrandChevreuil/NoteTaker.git
-```
-
-2. Ouvrez le projet dans Android Studio
-
-3. Synchronisez le projet avec les fichiers Gradle
-
-4. Exécutez l'application sur un émulateur ou un appareil physique
+1. Clonez ce dépôt :
+	```
+	git clone https://github.com/GrandChevreuil/NoteTaker.git
+	```
+2. Créez un projet Firebase et activez l'authentification par email/mot de passe.
+3. Créez une base Firestore avec la collection `notes`.
+4. Téléchargez le fichier `google-services.json` et placez-le dans `app/` (remplacez celui fourni si besoin).
+5. Ouvrez le projet dans Android Studio puis synchronisez Gradle.
+6. Exécutez l'application sur un émulateur ou un appareil physique connecté.
 
 ## Utilisation
-- Appuyez sur le bouton + en bas de l'écran pour créer une nouvelle note
-- Appuyez sur une note existante pour l'éditer
-- Appuyez longuement sur une note pour la supprimer
-- Utilisez l'icône de validation pour enregistrer vos modifications
+- Connectez-vous avec votre email/mot de passe ou créez un compte depuis l'écran d'accueil
+- Appuyez sur le bouton `+` pour créer une nouvelle note
+- Validez avec l'icône de confirmation pour sauvegarder dans Firestore
+- Touchez une note existante pour la modifier
+- Utilisez l'action de suppression dédiée pour retirer une note (suppression synchronisée)
 
-## Notes de publication - Version 1.0.0
+## Notes de publication - Version 1.1.0
 
 ### Ce que l'application peut faire
-- Créer de nouvelles notes avec titre et contenu
-- Afficher une liste de notes dans une interface visuellement attrayante
-- Éditer des notes existantes et mettre à jour leur contenu
-- Supprimer des notes indésirables via un appui long
-- Afficher les dates de création et de modification des notes
-- Offrir une expérience utilisateur fluide avec une interface moderne et élégante
-- Présenter un design harmonieux avec des couleurs anthracite, gris clair et orange foncé
+- Authentifier les utilisateurs (email/mot de passe ou anonyme)
+- Créer, modifier et supprimer des notes persistées dans Firebase Firestore
+- Afficher les dates de création et de dernière modification directement dans l'écran détail
+- Mettre à jour automatiquement la liste des notes après chaque action
+- Offrir une interface responsive pensée pour mobile et tablette
 
 ### Limitations actuelles
-- L'application stocke les notes en mémoire uniquement pendant son exécution
-- Les notes ne sont pas sauvegardées de façon permanente dans une base de données
-- Pas de fonctionnalité de recherche parmi les notes
-- Pas de possibilité de catégoriser les notes ou d'ajouter des étiquettes
-- Pas de synchronisation entre différents appareils
-- Pas d'options de partage des notes vers d'autres applications
-- Pas de support pour les contenus riches (images, listes, formatage du texte)
-- Pas de système de notifications ou de rappels
+- Pas encore de recherche ou de filtrage des notes
+- Pas de catégorisation ou d'étiquettes
+- Pas de mode hors-ligne complet (requiert une connexion réseau)
+- Pas de pièces jointes ni de formatage riche du texte
+- Pas de notifications ou rappels planifiés
 
 ## Contribuer
 Les contributions sont les bienvenues! Si vous souhaitez contribuer à ce projet:
