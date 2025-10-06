@@ -2,14 +2,15 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "fr.eseo.ld.mm.notes"
+    namespace = "fr.eseo.ld.mm.notesroom"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "fr.eseo.ld.mm.notes"
+        applicationId = "fr.eseo.ld.mm.notesroom"
         minSdk = 29
         targetSdk = 36
         versionCode = 1
@@ -58,4 +59,12 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.androidx.room.compiler)
+    implementation(libs.androidx.room.ktx)
+
+}
+
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
 }
