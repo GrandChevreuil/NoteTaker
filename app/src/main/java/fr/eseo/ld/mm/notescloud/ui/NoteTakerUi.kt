@@ -15,7 +15,6 @@ import fr.eseo.ld.mm.notescloud.ui.screens.ConnectionScreen
 import fr.eseo.ld.mm.notescloud.ui.screens.DetailsScreen
 import fr.eseo.ld.mm.notescloud.ui.screens.SummaryScreen
 import fr.eseo.ld.mm.notescloud.ui.viewmodels.NoteTakerViewModel
-import fr.eseo.ld.mm.notescloud.ui.viewmodels.NoteTakerViewModelFactory
 import fr.eseo.ld.mm.notescloud.viewmodels.AuthenticationViewModel
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.runtime.collectAsState
@@ -25,13 +24,8 @@ import androidx.compose.runtime.getValue
 @Composable
 fun NoteTakerUi() {
     val navController = rememberNavController()
-    val application = LocalContext.current.applicationContext as Application
-    val viewModel : NoteTakerViewModel = viewModel(
-        factory = NoteTakerViewModelFactory(
-            NoteTakerRepositoryRoomImpl(application)
-        )
-    )
     val authenticationViewModel: AuthenticationViewModel = hiltViewModel()
+    val viewModel: NoteTakerViewModel = hiltViewModel()
 
     NavHost(
         navController = navController,

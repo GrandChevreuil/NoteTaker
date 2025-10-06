@@ -2,17 +2,21 @@ package fr.eseo.ld.mm.notescloud.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import dagger.hilt.android.lifecycle.HiltViewModel
 import fr.eseo.ld.mm.notescloud.model.Note
-import fr.eseo.ld.mm.notescloud.repositories.NoteTakerRepository
+import fr.eseo.ld.mm.notescloud.repositories.NoteTakerRepositoryFirestoreImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import javax.inject.Inject
 
-class NoteTakerViewModel(private val _repository: NoteTakerRepository) : ViewModel() {
-    private val repository: NoteTakerRepository = _repository
+@HiltViewModel
+class NoteTakerViewModel @Inject constructor(
+    private val repository: NoteTakerRepositoryFirestoreImpl
+) : ViewModel() {
     private val _notes = MutableStateFlow<List<Note>>(emptyList())
     val notes : StateFlow<List<Note>> = _notes.asStateFlow()
 
@@ -35,6 +39,7 @@ class NoteTakerViewModel(private val _repository: NoteTakerRepository) : ViewMod
     fun addOrUpdateNote(note : Note){
         viewModelScope.launch (Dispatchers.IO){
             repository.addOrUpdateNote(note)
+            refreshNotes()
         }
     }
 
