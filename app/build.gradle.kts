@@ -6,11 +6,11 @@ plugins {
 }
 
 android {
-    namespace = "fr.eseo.ld.mm.notesroom"
+    namespace = "fr.eseo.ld.mm.notescloud"
     compileSdk = 36
 
     defaultConfig {
-        applicationId = "fr.eseo.ld.mm.notesroom"
+        applicationId = "fr.eseo.ld.mm.notescloud"
         minSdk = 29
         targetSdk = 36
         versionCode = 1
