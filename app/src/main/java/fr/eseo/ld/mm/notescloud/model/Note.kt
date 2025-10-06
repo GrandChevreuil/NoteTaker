@@ -6,10 +6,10 @@ import java.time.LocalDateTime
 
 @Entity(tableName = "notes")
 data class Note(
-    @PrimaryKey val id: String,
-    val author: String,
-    val title: String,
-    val body: String,
-    val creationDate: LocalDateTime,
-    val modificationDate: LocalDateTime
+    @PrimaryKey val id: String = "",
+    val author: String = "",
+    val title: String = "",
+    val body: String = "",
+    val creationDate: LocalDateTime = LocalDateTime.now(),
+    val modificationDate: LocalDateTime = LocalDateTime.now()
 )
