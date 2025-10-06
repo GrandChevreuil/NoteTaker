@@ -2,7 +2,10 @@ package fr.eseo.ld.mm.notescloud.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.firebase.Timestamp
+import com.google.firebase.firestore.Exclude
 import java.time.LocalDateTime
+import java.time.ZoneId
 
 @Entity(tableName = "notes")
 data class Note(
@@ -10,6 +13,33 @@ data class Note(
     val author: String = "",
     val title: String = "",
     val body: String = "",
-    val creationDate: LocalDateTime = LocalDateTime.now(),
-    val modificationDate: LocalDateTime = LocalDateTime.now()
-)
+    val creationDate: Timestamp = Timestamp.now(),
+    val modificationDate: Timestamp = Timestamp.now()
+) {
+    @get:Exclude
+    val creationDateLocal: LocalDateTime
+        get() = creationDate.toDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+    @get:Exclude
+    val modificationDateLocal: LocalDateTime
+        get() = modificationDate.toDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime()
+
+    companion object {
+        fun create(
+            id: String = "",
+            title: String = "",
+            body: String = "",
+            author: String = "",
+            creationDate: LocalDateTime = LocalDateTime.now(),
+            modificationDate: LocalDateTime = LocalDateTime.now()
+        ): Note {
+            return Note(
+                id = id,
+                title = title,
+                body = body,
+                author = author,
+                creationDate = Timestamp(creationDate.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli() / 1000, 0),
+                modificationDate = Timestamp(modificationDate.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli() / 1000, 0)
+            )
+        }
+    }
+}

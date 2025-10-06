@@ -65,7 +65,7 @@ fun NotesComposePreview() {
 }
 
 fun addNotes(notes: MutableList<Note>) {
-    notes.add(Note(
+    notes.add(Note.create(
         id = "1",
         author = "Tarek",
         title = "Fight Club Review",
@@ -73,7 +73,7 @@ fun addNotes(notes: MutableList<Note>) {
         creationDate = LocalDateTime.now(),
         modificationDate = LocalDateTime.now()
     ))
-    notes.add(Note(
+    notes.add(Note.create(
         id = "2",
         author = "Tarek",
         title = "Inception Thoughts",

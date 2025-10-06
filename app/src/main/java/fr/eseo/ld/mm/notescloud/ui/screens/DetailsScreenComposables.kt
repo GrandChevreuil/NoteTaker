@@ -107,13 +107,14 @@ fun DetailsScreen(
                     actions = {
                         IconButton(
                             onClick = {
-                                val newNote = Note(
-                                    creationDate = note?.creationDate ?: date,
-                                    modificationDate = date,
-                                    author = authenticationViewModel.user.value?.email ?: author,
-                                    body = body,
+                                val now = LocalDateTime.now()
+                                val newNote = Note.create(
+                                    id = id ?: "",
                                     title = title,
-                                    id = note?.id ?: createId(date)
+                                    body = body,
+                                    author = authenticationViewModel.user.value?.email ?: author,
+                                    creationDate = if (note != null) note.creationDateLocal else now,
+                                    modificationDate = now
                                 )
                                 viewModel.addOrUpdateNote(newNote)
                                 navController.navigateUp()
@@ -134,8 +135,8 @@ fun DetailsScreen(
                     title = title,
                     body = body,
                     author = author,
-                    creationDate = note?.creationDate ?: date,
-                    modificationDate = note?.modificationDate ?: date,
+                    creationDate = note?.creationDateLocal ?: date,
+                    modificationDate = note?.modificationDateLocal ?: date,
                     onBodyChange = { body = it },
                     onTitleChange = { title = it },
                     modifier = Modifier.padding(innerPadding),
