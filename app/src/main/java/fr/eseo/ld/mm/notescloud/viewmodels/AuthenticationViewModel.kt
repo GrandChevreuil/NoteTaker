@@ -33,4 +33,31 @@ class AuthenticationViewModel @Inject constructor(
             }
         }
     }
+
+    fun signUp(email: String, password: String) {
+        authenticationRepository.signUpWithEmail(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    _user.value = authenticationRepository.getCurrentUser()
+                } else {
+                    _user.value = null
+                }
+            }
+    }
+
+    fun login(email: String, password: String) {
+        authenticationRepository.loginWithEmail(email, password)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    _user.value = authenticationRepository.getCurrentUser()
+                } else {
+                    _user.value = null
+                }
+            }
+    }
+
+    fun logout() {
+        authenticationRepository.logout()
+        loginAnonymously()
+    }
 }
